@@ -9,26 +9,29 @@ Author : Chinmay Tagare
 # where as, CPU bound tasks we need to use multiprocessing
 # CPU bound tasks include data crunching, handling large data etc
 
+# _ is throw away variable 
 
 import time
 import multiprocessing
 
 start = time.perf_counter()
 
-def do_something():
-    print('Sleeping for 1 second ... ')
-    time.sleep(1)
+def do_something(secs):
+    print('Sleeping for {} seconds ... '.format(secs))
+    time.sleep(secs)
     print('Done sleeping... ')
 
 if __name__ == '__main__':
-    process_1 = multiprocessing.Process(target=do_something)
-    process_2 = multiprocessing.Process(target=do_something)
     
-    process_1.start()
-    process_2.start()
+    process_list = []
+    for _ in range(10):
+        p = multiprocessing.Process(target=do_something, args=[1.5])
+        p.start()
+        process_list.append(p)
+        
+    for process in process_list:
+        process.join()
     
-    process_1.join()
-    process_2.join()
     
     finish = time.perf_counter()
     
