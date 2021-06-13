@@ -11,7 +11,6 @@ Author : Chinmay Tagare
 
 
 import time
-import threading
 
 start = time.perf_counter()
 
@@ -20,14 +19,8 @@ def do_something():
     time.sleep(1)
     print('Done sleeping... ')
 
-t1 = threading.Thread(target = do_something)
-t2 = threading.Thread(target = do_something)
-
-t1.start()
-t2.start()
-
-t1.join()
-t2.join()
+do_something()
+do_something()
 
 finish = time.perf_counter()
 
