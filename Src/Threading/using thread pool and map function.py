@@ -31,19 +31,23 @@ def do_something(sec):
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
 # =============================================================================
-#     future_obj_1 = executor.submit(do_something, 1)
-#     future_obj_2 = executor.submit(do_something, 1)
-#     print(future_obj_1.result())
-#     print(future_obj_2.result())
+#     secs = [5,4,3,2,1]
+#     results = [executor.submit(do_something, sec) for sec in secs]
+
+#     # printing completed results
+#     for f in concurrent.futures.as_completed(results):
+#         print(f.result())
+#     
 # =============================================================================
+    # map returns the results, not future object like submit method
     secs = [5,4,3,2,1]
-    results = [executor.submit(do_something, sec) for sec in secs]
+    # also, map will return the result as they started, not as completed
+    results = executor.map(do_something, secs)
     
-    # printing completed results
-    for f in concurrent.futures.as_completed(results):
-        print(f.result())
+    for result in results:
+        print(result)
     
-    
+
 # =============================================================================
 # thread_list = []
 # 
