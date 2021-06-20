@@ -7,6 +7,7 @@ Author : Chinmay Tagare
 class Employee:
     
     def __init__(self, first, last, pay):
+        # instance variables - these are unique for each instance of class
         self.first = first
         self.last = last
         self.pay = pay
