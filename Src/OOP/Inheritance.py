@@ -92,7 +92,10 @@ print('-----------------5--------------')
 # built in functions for class in python
 # to check if the object is an instance of a class
 print(isinstance(mgr_1, Manager))
+print(isinstance(mgr_1, Employee))
+print(isinstance(mgr_1, Developer))
 
+print(issubclass(Developer, Employee))
 
 
 
